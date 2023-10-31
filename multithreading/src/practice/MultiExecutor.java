@@ -1,5 +1,6 @@
 package practice;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -15,14 +16,20 @@ public class MultiExecutor {
         // Complete your code here
         this.tasks = tasks;
     }
-    
+
     /**
      * Starts and executes all the tasks concurrently
      */
     public void executeAll() {
+        List<Thread> threads = new ArrayList<>();
         // complete your code here
         for (Runnable task : tasks) {
-            task.run();
+            Thread thread = new Thread(task);
+            threads.add(thread);
+        }
+
+        for (Thread thread : threads) {
+            thread.start();
         }
     }
 }
